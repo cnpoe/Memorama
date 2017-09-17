@@ -1,6 +1,7 @@
 var tileImages = [];
 var startButton = document.getElementById('start');
 var gamePlay = false;
+var gameBoard = document.getElementById('gameboard');
 
 startButton.addEventListener('click', startGame);
 
@@ -12,9 +13,19 @@ function startGame(){
 		buildArray();
 		tileArray = tileImages.concat(tileImages);
 		shuffleArray(tileArray);
+		buildBoard();
 		console.log(tileArray);
 	}
 	console.log('started');
+}
+
+function buildBoard() {
+	var html = "";
+	for (var x = 0; x <= (tileArray.length - 1); x++) {
+		html += '<div class="gameTile">';
+		html += '<img id="cardz' + x + '" src="images/back.jpg" onclick="pickCard(' + x + ')" class=flipImage>';
+	}
+	gameBoard.innerHTML = html;
 }
 
 function buildArray() {
