@@ -1,5 +1,6 @@
 var tileImages = [];
 var startButton = document.getElementById('start');
+var gamePlay = false;
 
 startButton.addEventListener('click', startGame);
 
@@ -9,9 +10,9 @@ function startGame(){
 	if (!gamePlay) {
 		gamePlay = true;
 		buildArray();
-		titleArray = titleImages.concat(titleImages);
-		shuffleArray(titleArray);
-		console.log(titleArray);
+		tileArray = tileImages.concat(tileImages);
+		shuffleArray(tileArray);
+		console.log(tileArray);
 	}
 	console.log('started');
 }
