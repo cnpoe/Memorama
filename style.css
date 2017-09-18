@@ -16,3 +16,11 @@
 	text-decoration: none;
 }
 
+.flipImage{
+	width: 100px;
+}
+
+.gameTile{
+	display: inline-block;;
+	border: 1px solid black;
+}
