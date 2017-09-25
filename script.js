@@ -1,8 +1,11 @@
 var tileImages = [];
+var tileArray = [];
 var startButton = document.getElementById('start');
 var gamePlay = false;
 var gameBoard = document.getElementById('gameboard');
 var cardFlipped = -1;
+var tileFlippedOver = [];
+
 startButton.addEventListener('click', startGame);
 
 
@@ -28,20 +31,28 @@ function buildBoard() {
 	gameBoard.innerHTML = html;
 }
 
+function isInArray(v, array){
+	return array.indexOf(v) > -1;
+}
+
+
+function cardFlip(t, tileIndex){
+	t.src = "images/" + tileArray[tileIndex];
+	tileFlippedOver.push(t.id);
+}
+
 function pickCard(tileIndex, t) {
-	console.log(tileIndex);
-	console.log(cardFlipped);
-	console.log(this);
-	if (cardFlipped >= 0) {
-		if (tileIndex != cardFlipped) {
-			t.src = "images/" + tileArray[tileIndex];
+	if(!isInArray(t.id, tileFlippedOver)){
+		console.log("in array");
+		if (cardFlipped >= 0) {
+			cardFlip(t, tileIndex);
 			var secondCard = tileIndex;
+		}else{
+			cardFlipped = tileIndex;
+			cardFlip(t, tileIndex);
 		}
-		console.log('second', cardFlipped);
 	}else{
-		cardFlipped = tileIndex;
-		t.src = "images/" + tileArray[tileIndex];
-		console.log('first', cardFlipped);
+		console.log("not in array");
 	}
 }
 
