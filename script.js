@@ -2,6 +2,7 @@ var tileImages = [];
 var tileArray = [];
 var startButton = document.getElementById('start');
 var gamePlay = false;
+var timer = '';
 var gameBoard = document.getElementById('gameboard');
 var cardFlipped = -1;
 var tileFlippedOver = [];
@@ -41,12 +42,29 @@ function cardFlip(t, tileIndex){
 	tileFlippedOver.push(t.id);
 }
 
+function hideCard(tileIndex, id){
+	for(var x = 0; x < 2; x++){
+		var vid = tileFlippedOver.pop();
+		document.getElementById(vid).src = "images/back.jpg";
+		console.log(vid);
+	}
+	clearInterval(timer);
+}
+
 function pickCard(tileIndex, t) {
 	if(!isInArray(t.id, tileFlippedOver)){
 		console.log("in array");
 		if (cardFlipped >= 0) {
 			cardFlip(t, tileIndex);
 			var secondCard = tileIndex;
+			if (tileFlippedOver[tileFlippedOver.length-1] == tileFlippedOver[tileFlippedOver.length-2]) {
+				//
+				console.log("match");
+			}else{
+				//
+				console.log("no match");
+				timer = setInterval(hideCard,3000);
+			}
 		}else{
 			cardFlipped = tileIndex;
 			cardFlip(t, tileIndex);
