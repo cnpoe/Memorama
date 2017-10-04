@@ -15,7 +15,7 @@ function gameOver(){
 	startButton.style.display = 'block';
 	message.innerHTML = "Click to start new game";
 	gamePlay = false;
-	tileArray = [];
+	tileImages = [];
 	tileFlippedOver = [];
 }
 
